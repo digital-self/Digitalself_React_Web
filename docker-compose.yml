@@ -1,0 +1,21 @@
+version: '3'
+services:
+  digitalself_webapp:
+    build:
+      context: .
+      dockerfile: ./build/Dockerfile
+    container_name: digitalself_webapp
+    volumes:
+      - ./src:/usr/src/app
+    depends_on:
+      - digitalself_webapp_worker
+    command: [ "nodemon", "server.js"]
+    ports:
+      - "5130:8080"
+  digitalself_webapp_worker:
+    build:
+      context: .
+      dockerfile: ./build/DockerfileNode
+    container_name: digitalself_webapp_worker
+    volumes:
+      - ./src:/usr/src/app

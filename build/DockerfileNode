@@ -1,0 +1,14 @@
+FROM node:14
+
+WORKDIR /usr/src/package_files
+
+RUN mkdir -p /usr/src/package_files/
+COPY ./package_files/. /usr/src/package_files
+RUN chmod +x -R /usr/src/package_files/
+RUN cd /usr/src/package_files/
+
+RUN npm install
+
+RUN chmod +x -R /usr/src/package_files/
+
+ENTRYPOINT ["/usr/src/package_files/start.sh"]
