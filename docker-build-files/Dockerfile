@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 #COPY ./src /usr/src/app
 
 RUN mkdir -p /usr/src/scripts/
-COPY ./build/scripts/main_start.sh /usr/src/scripts/main_start.sh
+COPY ./docker-build-files/scripts/main_start.sh /usr/src/scripts/main_start.sh
 RUN chmod +x -R /usr/src/scripts/main_start.sh
 
 #RUN chmod +x -R /usr/src/app/
