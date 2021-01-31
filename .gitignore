@@ -1,3 +1,4 @@
 *node_modules/
 site-src-files/build
+site-src-files/.eslintcache
 *.idea/
