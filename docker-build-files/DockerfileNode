@@ -19,7 +19,7 @@ RUN chmod +x -R /usr/src/package_files/server-files/
 RUN chmod -R 0700 /usr/src/package_files/main-files/
 RUN chmod -R 0700 /usr/src/package_files/server-files/
 
-RUN cp -R /usr/src/package_files/main-files/. /usr/src/app/
-RUN cp -R /usr/src/package_files/server-files/. /usr/src/app/digitalself-server/
+#RUN cp -R /usr/src/package_files/main-files/. /usr/src/app/
+#RUN cp -R /usr/src/package_files/server-files/. /usr/src/app/digitalself-server/
 
 #ENTRYPOINT ["/usr/src/package_files/main-files/start.sh"]
