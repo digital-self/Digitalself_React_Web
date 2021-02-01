@@ -16,8 +16,12 @@ class Login extends React.Component {
     submitHandler = (e) => {
         e.preventDefault();
         login(this.state).then((a) => {
-            if(a) {
-                this.setState({returnvalue: 'login succesful'})
+            console.log("one", a);
+            if(true) {
+                console.log("two", a);
+                //this.setState({returnvalue: 'login succesful'});
+                window.location =  '/';
+                // @todo - fix this. <Redirect to='https://google.com'  />
             }
         })
 
