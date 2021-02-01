@@ -1,18 +1,27 @@
 import React from 'react';
-import { login } from '../Api_Calls/ApiCalls'
+import { login } from '../api_calls/ApiCalls'
+import { Redirect } from 'react-router-dom';
+
 
 class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            returnvalue: ''
         }
     }
 
     submitHandler = (e) => {
         e.preventDefault();
-        login(this.state);
+        login(this.state).then((a) => {
+            if(a) {
+                this.setState({returnvalue: 'login succesful'})
+            }
+        })
+
+        console.log(this.state.returnvalue);
     }
 
     changehandler = (e) => {
@@ -23,6 +32,14 @@ class Login extends React.Component {
     }
 
     render() {
+        if (this.state.returnvalue === false) {
+            return <Redirect to='/login' />
+        } else if (this.state.returnvalue === true) {
+            return <Redirect to='/home' />
+        } else if (this.state.returnvalue === 'error') {
+            return <Redirect to='/login' />
+        }
+
         return (
             <div>
                 <form onSubmit={this.submitHandler}>
