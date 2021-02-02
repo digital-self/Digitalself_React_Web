@@ -34,11 +34,16 @@ export function login(userInput) {
 
     let returnVal = ajaxApiCallObject.makeApiCall("POST", configData.base_url + '/user/login', userInput)
     .then(response => {
-        return response.data.success;
+        if (!response.data.success) {
+            return false;
+        } else {
+            localStorage.setItem('token', response.data.data.access_token);
+            return true;
+        }
     })
     .catch(error => {
-        return error;
-    });
+        return 'error';
+    });    
 
     return returnVal;
 };
@@ -52,4 +57,6 @@ export function register(userInput) {
     .catch(error => {
         console.log(error.response.data);
     });
+
+    return returnVal;
 }

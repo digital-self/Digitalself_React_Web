@@ -9,14 +9,26 @@ class Login extends React.Component {
         this.state = {
             email: '',
             password: '',
-            returnvalue: ''
         }
     }
 
     submitHandler = (e) => {
         e.preventDefault();
         login(this.state).then((a) => {
+            if (a === 'error') {
+                window.location =  '/login';
+            } else if (a === false) {
+                window.location =  '/login';
+            } else {
+                window.location =  '/';
+            }
+        });
+        /*login(this.state).then((a) => {
             console.log("one", a);
+            // @todo - save the access token in a session
+            // @todo - check what you get to ensure tha you can redirect and to where
+            // @todo - if you try to access the homepage redirect to login
+
             if(true) {
                 console.log("two", a);
                 //this.setState({returnvalue: 'login succesful'});
@@ -26,6 +38,7 @@ class Login extends React.Component {
         })
 
         console.log(this.state.returnvalue);
+        */
     }
 
     changehandler = (e) => {
