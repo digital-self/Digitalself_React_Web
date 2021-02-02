@@ -18,7 +18,15 @@ class Register extends React.Component {
     submitHandler = (e) => {
         e.preventDefault();
         
-        register(this.state);
+        register(this.state).then((a) => {
+            if (a === 'error') {
+                window.location =  '/register';
+            } else if (a === false) {
+                window.location =  '/register';
+            } else {
+                window.location =  '/login';
+            }
+        });
     }
 
     changehandler = (e) => {
