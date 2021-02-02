@@ -76,11 +76,9 @@ export function getPosts(token) {
 
     if (token) {
         headers.Authorization = `Basic ${token}`;
-    }
 
-    const ajaxApiCallObject = new ajaxApiCall();
-    
-    if(headers) {
+        const ajaxApiCallObject = new ajaxApiCall();
+
         returnVal  = ajaxApiCallObject.makeApiCall("GET", configData.base_url + '/post', headers)
         .then(response => {
             if(!response.data.data.posts.data) {
@@ -92,7 +90,7 @@ export function getPosts(token) {
         .catch(error => {
             return 'error';
         });
-    } 
+    }
     
     return returnVal;
 }
@@ -102,14 +100,10 @@ export function addMyPosts(userId, postId, token) {
     let returnVal;
 
     if (token) {
-        if (token) {
-            headers.Authorization = `Basic ${token}`;
-        }
-    }
+        headers.Authorization = `Basic ${token}`;
 
-    const ajaxApiCallObject = new ajaxApiCall();
-    
-    if(headers) {
+        const ajaxApiCallObject = new ajaxApiCall();
+
         returnVal  = ajaxApiCallObject.makeApiCall("POST", configData.base_url + `/my-posts/add/${userId}/${postId}`, headers)
         .then(response => {
             if(!response.data.success) {
@@ -122,7 +116,33 @@ export function addMyPosts(userId, postId, token) {
         .catch(error => {
             return 'error';
         });
-    } 
+    }
+    return returnVal;
+}
+
+export function getMyposts(userId, token) {
+    let headers = configData.headers;
+    let returnVal;
+
+    if (token) {
+        headers.Authorization = `Basic ${token}`;
+    }
+
+    const ajaxApiCallObject = new ajaxApiCall();
+    returnVal = ajaxApiCallObject.makeApiCall("GET", configData.base_url + `/my-posts/${userId}/0/6`, headers)
+    .then(response => {
+        let responseArray = response.data.data.my_posts;
+        let finalArray = [];
+        for(let i = 0; i < responseArray.length; i++) {
+            finalArray.push(responseArray[i][0]);
+        }
+
+        return finalArray;
+    })
+    .catch(error => {
+        return 'error';
+    })
     
+
     return returnVal;
 }
