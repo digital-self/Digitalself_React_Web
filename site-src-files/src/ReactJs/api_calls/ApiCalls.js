@@ -71,15 +71,11 @@ export function register(userInput) {
 }
 
 export function getPosts(token) {
-    let headers;
+    let headers = configData.headers;
     let returnVal;
 
     if (token) {
-        headers = {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': `Basic ${token}`
-        }
+        headers.Authorization = `Basic ${token}`;
     }
 
     const ajaxApiCallObject = new ajaxApiCall();
@@ -102,14 +98,12 @@ export function getPosts(token) {
 }
 
 export function addMyPosts(userId, postId, token) {
-    let headers;
+    let headers = configData.headers;
     let returnVal;
 
     if (token) {
-        headers = {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': `Basic ${token}`
+        if (token) {
+            headers.Authorization = `Basic ${token}`;
         }
     }
 
