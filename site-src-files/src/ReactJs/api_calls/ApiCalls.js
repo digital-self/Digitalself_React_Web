@@ -86,10 +86,10 @@ export function getPosts(token) {
     if(headers) {
         returnVal  = ajaxApiCallObject.makeApiCall("GET", configData.base_url + '/post', headers)
         .then(response => {
-            if(!response.data.data.data) {
+            if(!response.data.data.posts.data) {
                 return false;
             } else {
-                return response.data.data.data;
+                return response.data.data.posts.data;
             }
         })
         .catch(error => {
