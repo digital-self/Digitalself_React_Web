@@ -64,3 +64,30 @@ export function register(userInput) {
 
     return returnVal;
 }
+
+export function getPosts(token) {
+    let headers;
+    let returnVal;
+
+    if (token) {
+        headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Basic ${token}`
+        }
+    }
+
+    const ajaxApiCallObject = new ajaxApiCall();
+    
+    if(headers) {
+        returnVal  = ajaxApiCallObject.makeApiCall("GET", configData.base_url + '/post', headers)
+        .then(response => {
+            return response.data.data.data;
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    } 
+    
+    return returnVal;
+}
