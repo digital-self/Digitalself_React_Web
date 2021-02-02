@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { getPosts } from '../api_calls/ApiCalls';
 
-class App extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,6 +20,12 @@ class App extends Component {
   render() {
     if (!localStorage.token) {
       return (<Redirect to='/login' />);
+    }
+
+    if(this.state.posts === false) {
+      return <p>There are no posts</p>
+    } else if (this.state.posts === 'error') {
+      return <p>An error occured</p>
     }
 
     const posts =  this.state.posts.map((post) =>
@@ -42,4 +48,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Home;
