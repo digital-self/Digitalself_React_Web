@@ -52,10 +52,14 @@ export function register(userInput) {
     const ajaxApiCallObject = new ajaxApiCall();
     let returnVal = ajaxApiCallObject.makeApiCall("POST",configData.base_url + '/user/register', userInput)
     .then(response => {
-        console.log(response);
+        if (!response.data.success) {
+            return false;
+        } else {
+            return true;
+        }
     })
     .catch(error => {
-        console.log(error.response.data);
+        return 'error';
     });
 
     return returnVal;
