@@ -36,6 +36,7 @@ function authResponseHandler(result, action) {
     } else {
         if (action === 'login') {
             localStorage.setItem('token', result.data.access_token);
+            localStorage.setItem('user_id', result.data.user.id);
         }
         return true;
     }
