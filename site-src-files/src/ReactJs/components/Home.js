@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { getPosts } from '../api_calls/ApiCalls';
+import { addMyPosts } from '../api_calls/ApiCalls';
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: []
+      posts: [],
+      token: '',
+      userId: null,
+      postId: null
     }
   }
 
@@ -14,11 +18,20 @@ class Home extends Component {
 
   componentDidMount() {
     if(localStorage.token) {
+      this.setState({token: localStorage.token});
+      this.setState({userId: localStorage.userId});
       getPosts(localStorage.token)
       .then((a) => {
         this.setState({posts: a})
       });
     }
+  }
+
+  save = (id, e) => {
+    addMyPosts(this.state.userId, id, this.state.token)
+    .then((a) => {
+      console.log(a);
+    });
   }
 
   render() {
@@ -37,7 +50,7 @@ class Home extends Component {
         <div>
           <h3>{post.post_title}</h3>
           <p>{post.post_content}</p>
-          <button>Save for future</button>
+          <button onClick={this.save.bind(this, post.id)}>Save for future</button>
         </div>
       </li>
     )

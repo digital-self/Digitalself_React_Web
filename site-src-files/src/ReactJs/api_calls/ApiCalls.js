@@ -36,7 +36,7 @@ function authResponseHandler(result, action) {
     } else {
         if (action === 'login') {
             localStorage.setItem('token', result.data.access_token);
-            localStorage.setItem('user_id', result.data.user.id);
+            localStorage.setItem('userId', result.data.user.id);
         }
         return true;
     }
@@ -92,6 +92,38 @@ export function getPosts(token) {
             } else {
                 return response.data.data.posts.data;
             }
+        })
+        .catch(error => {
+            return 'error';
+        });
+    } 
+    
+    return returnVal;
+}
+
+export function addMyPosts(userId, postId, token) {
+    let headers;
+    let returnVal;
+
+    if (token) {
+        headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Basic ${token}`
+        }
+    }
+
+    const ajaxApiCallObject = new ajaxApiCall();
+    
+    if(headers) {
+        returnVal  = ajaxApiCallObject.makeApiCall("POST", configData.base_url + `/my-posts/add/${userId}/${postId}`, headers)
+        .then(response => {
+            if(!response.data.success) {
+                return false;
+            } else {
+                return response.data.success;
+            }
+            
         })
         .catch(error => {
             return 'error';
