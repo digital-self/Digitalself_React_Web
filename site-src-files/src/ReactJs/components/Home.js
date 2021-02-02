@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 class App extends Component {
 
-  componentDidMount() {
-    console.log(localStorage.token);
-  }
-
   render() {
+    if (!localStorage.token) {
+      return (<Redirect to='/login' />);
+    }
+
     return <div>
       <h4>Home</h4>
       <p>This is Home page.</p>
