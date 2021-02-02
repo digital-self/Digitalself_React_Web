@@ -1,6 +1,7 @@
 import axios from 'axios';
 import configData from '../config/config.json';
 
+//Api call class
 const ajaxApiCall = function(){
 
         
@@ -28,18 +29,24 @@ const ajaxApiCall = function(){
     };
 };
 
+//Function to handle login and signup responses
+function authResponseHandler(result, action) {
+    if (!result.success) {
+        return false;
+    } else {
+        if (action === 'login') {
+            localStorage.setItem('token', result.data.access_token);
+        }
+        return true;
+    }
+}
+
 export function login(userInput) {
-
+    let action = 'login';
     const ajaxApiCallObject = new ajaxApiCall();
-
     let returnVal = ajaxApiCallObject.makeApiCall("POST", configData.base_url + '/user/login', userInput)
     .then(response => {
-        if (!response.data.success) {
-            return false;
-        } else {
-            localStorage.setItem('token', response.data.data.access_token);
-            return true;
-        }
+        authResponseHandler(response.data, action);
     })
     .catch(error => {
         return 'error';
@@ -49,14 +56,11 @@ export function login(userInput) {
 };
 
 export function register(userInput) {
+    let action = null;
     const ajaxApiCallObject = new ajaxApiCall();
     let returnVal = ajaxApiCallObject.makeApiCall("POST",configData.base_url + '/user/register', userInput)
     .then(response => {
-        if (!response.data.success) {
-            return false;
-        } else {
-            return true;
-        }
+        authResponseHandler(response.data, action);
     })
     .catch(error => {
         return 'error';
@@ -82,10 +86,14 @@ export function getPosts(token) {
     if(headers) {
         returnVal  = ajaxApiCallObject.makeApiCall("GET", configData.base_url + '/post', headers)
         .then(response => {
-            return response.data.data.data;
+            if(!response.data.data.data) {
+                return false;
+            } else {
+                return response.data.data.data;
+            }
         })
         .catch(error => {
-            console.log(error);
+            return 'error';
         });
     } 
     
