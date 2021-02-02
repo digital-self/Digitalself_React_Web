@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 
 class App extends Component {
+
+  componentDidMount() {
+    console.log(localStorage.token);
+  }
+
   render() {
     return <div>
       <h4>Home</h4>
