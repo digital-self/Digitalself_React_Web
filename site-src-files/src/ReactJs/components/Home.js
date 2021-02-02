@@ -30,6 +30,7 @@ class Home extends Component {
   save = (id, e) => {
     addMyPosts(this.state.userId, id, this.state.token)
     .then((a) => {
+      //@Todo - handle this better, i.e in case of an error
       console.log(a);
     });
   }
