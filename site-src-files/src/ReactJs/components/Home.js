@@ -10,11 +10,15 @@ class Home extends Component {
     }
   }
 
+  //@todo - handle log out
+
   componentDidMount() {
-    getPosts(localStorage.token)
-    .then((a) => {
-      this.setState({posts: a})
-    });
+    if(localStorage.token) {
+      getPosts(localStorage.token)
+      .then((a) => {
+        this.setState({posts: a})
+      });
+    }
   }
 
   render() {
@@ -33,6 +37,7 @@ class Home extends Component {
         <div>
           <h3>{post.post_title}</h3>
           <p>{post.post_content}</p>
+          <button>Save for future</button>
         </div>
       </li>
     )
