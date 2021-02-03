@@ -18,8 +18,14 @@ class Register extends React.Component {
 
     submitHandler = (e) => {
         e.preventDefault();
+
+        const nam = e.target.name;
+        const val = e.target.value;
+
+        this.setState({[nam]: val});
         
         register(this.state).then((a) => {
+            
             if (a === 'error') {
                 window.location =  '/register';
             } else if (a === false) {
@@ -38,42 +44,43 @@ class Register extends React.Component {
     }
     
     render() {
+           
         const Register = () => {
             return (
                 <div>
                     <form onSubmit={this.submitHandler}>
                         <div>
                             <label htmlFor='fname'>First Name: </label>
-                            <input id='fname' type='text' name='first_name' onChange={this.changehandler}/>
+                            <input id='fname' type='text' name='first_name' />
                         </div>
                         <div>
                             <label htmlFor='lname'>Last Name: </label>
-                            <input id='lname' type='text' name='last_name' onChange={this.changehandler}/> <br />
+                            <input id='lname' type='text' name='last_name' />
                         </div>
                         
                         <div>
 
                         </div>
                         <label htmlFor='phone'>Phone Number: </label>
-                        <input id='phone' type='text' name='phoneNumber' onChange={this.changehandler}/> <br />
+                        <input id='phone' type='text' name='phoneNumber'/>
                         <div>
                             <label htmlFor='type'>Type: </label>
-                            <input id='type' type='number' name='type' onChange={this.changehandler}/> <br />    
+                            <input id='type' type='number' name='type' /> <br />    
                         </div>
                         
                         <div>
                             <label htmlFor='email'>Email: </label>
-                            <input id='email' type='text' name='email' onChange={this.changehandler}/> <br />    
+                            <input id='email' type='text' name='email' /> <br />    
                         </div>
                         
                         <div>
                             <label htmlFor='password'>Password: </label>
-                            <input id='password' type='password' name='password' onChange={this.changehandler}/> <br />    
+                            <input id='password' type='password' name='password' /> <br />    
                         </div>
                         
                         <div>
                             <label htmlFor='passconf'>Confirm Password: </label>
-                            <input id='passconf' type='password' name='password_confirmation' onChange={this.changehandler}/> <br />    
+                            <input id='passconf' type='password' name='password_confirmation' /> <br />    
                         </div>
                         
                         <div>

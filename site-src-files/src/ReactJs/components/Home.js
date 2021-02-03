@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { getPosts } from '../api_calls/ApiCalls';
 import { addMyPosts } from '../api_calls/ApiCalls';
 import Layout from './layouts/Layout';
-import Contents from './layouts/Layout'
+import Cookies from 'js-cookie'
 
 class Home extends Component {
   constructor(props) {
@@ -38,7 +38,7 @@ class Home extends Component {
   }
 
   render() {
-    if (!localStorage.token) {
+    if (!(Cookies.get("token") && Cookies.get("userid"))) {
       return (<Redirect to='/login' />);
     }
 

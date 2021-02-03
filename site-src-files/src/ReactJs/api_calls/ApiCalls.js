@@ -1,5 +1,6 @@
 import axios from 'axios';
 import configData from '../config/config.json';
+import Cookies from 'js-cookie';
 
 //Api call class
 const ajaxApiCall = function(){
@@ -42,6 +43,8 @@ function authResponseHandler(result, action) {
         return false;
     } else {
         if (action === 'login') {
+            Cookies.set("token", result.data.access_token);
+            Cookies.set("userid", result.data.user.id);
             localStorage.setItem('token', result.data.access_token);
             localStorage.setItem('userId', result.data.user.id);
         }
