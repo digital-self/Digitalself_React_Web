@@ -1,5 +1,5 @@
 import React from 'react';
-import { login } from '../api_calls/ApiCalls'
+import { login } from '../api_calls/ApiCalls';
 import { Redirect } from 'react-router-dom';
 
 class Login extends React.Component {
@@ -22,22 +22,6 @@ class Login extends React.Component {
                 window.location =  '/';
             }
         });
-        /*login(this.state).then((a) => {
-            console.log("one", a);
-            // @todo - save the access token in a session
-            // @todo - check what you get to ensure tha you can redirect and to where
-            // @todo - if you try to access the homepage redirect to login
-
-            if(true) {
-                console.log("two", a);
-                //this.setState({returnvalue: 'login succesful'});
-                window.location =  '/';
-                // @todo - fix this. <Redirect to='https://google.com'  />
-            }
-        })
-
-        console.log(this.state.returnvalue);
-        */
     }
 
     changehandler = (e) => {

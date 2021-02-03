@@ -1,5 +1,5 @@
 import React from 'react';
-import { getMyposts } from '../api_calls/ApiCalls';
+import { deletePost, getMyposts } from '../api_calls/ApiCalls';
 
 class Profile extends React.Component {
     constructor(props) {
@@ -9,11 +9,23 @@ class Profile extends React.Component {
         }
     }
 
-    componentDidMount() {
+    clientGetPosts() {
         getMyposts(localStorage.userId, localStorage.token)
         .then((a) => {
             this.setState({savedPosts: a})
         });
+    }
+
+    componentDidMount() {
+        this.clientGetPosts();
+    }
+
+    delete = (id) => {
+        deletePost(localStorage.userId, localStorage.token, id)
+        .then((a) => {
+            // @Todo - display message to user after succesful delete
+            this.clientGetPosts();
+        })
     }
 
     render() {
@@ -28,6 +40,7 @@ class Profile extends React.Component {
             <div>
             <h3>{savedPost.post_title}</h3>
             <p>{savedPost.post_content}</p>
+            <button onClick={this.delete.bind(this, savedPost.id)}>Delete Post</button>
             </div>
         </li>
         )
