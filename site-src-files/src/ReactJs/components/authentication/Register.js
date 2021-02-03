@@ -1,5 +1,5 @@
 import React from 'react';
-import { register } from '../api_calls/ApiCalls';
+import { register } from '../../api_calls/ApiCalls';
 
 class Register extends React.Component {
     constructor(props) {
