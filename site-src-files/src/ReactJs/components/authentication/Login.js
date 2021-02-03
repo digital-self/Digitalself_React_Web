@@ -1,5 +1,5 @@
 import React from 'react';
-import { login } from '../api_calls/ApiCalls';
+import { login } from '../../api_calls/ApiCalls';
 import { Redirect } from 'react-router-dom';
 
 class Login extends React.Component {
