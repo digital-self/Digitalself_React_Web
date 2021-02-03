@@ -1,6 +1,7 @@
 import React from 'react';
 import { login } from '../../api_calls/ApiCalls';
 import { Redirect } from 'react-router-dom';
+import Layout from '../layouts/Layout';
 
 class Login extends React.Component {
     constructor(props) {
@@ -40,22 +41,30 @@ class Login extends React.Component {
             return <Redirect to='/login' />
         }
 
+        const Login = () => {
+            return (
+                <div>
+                    <form onSubmit={this.submitHandler}>
+                        <div>
+                            <label htmlFor="email">Email: </label>
+                            <input type="email" name="email" id="email" onChange={this.changehandler} />
+                        </div>
+                        <div>
+                            <label htmlFor="password">Password: </label>
+                            <input type="password" name="password" id="password" onChange={this.changehandler} />
+                        </div>
+                        <div>
+                            <input type="submit" name="submit" value="Submit" />
+                        </div>
+                    </form>
+                </div>
+            )
+        }
+
         return (
-            <div>
-                <form onSubmit={this.submitHandler}>
-                    <div>
-                        <label htmlFor="email">Email: </label>
-                        <input type="email" name="email" id="email" onChange={this.changehandler} />
-                    </div>
-                    <div>
-                        <label htmlFor="password">Password: </label>
-                        <input type="password" name="password" id="password" onChange={this.changehandler} />
-                    </div>
-                    <div>
-                        <input type="submit" name="submit" value="Submit" />
-                    </div>
-                </form>
-            </div>
+            <Layout Content = {Login}>
+
+            </Layout>
         )
     }
 }
