@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { getPosts } from '../api_calls/ApiCalls';
 import { addMyPosts } from '../api_calls/ApiCalls';
+import Layout from './layouts/Layout';
+import Contents from './layouts/Layout'
 
 class Home extends Component {
   constructor(props) {
@@ -56,14 +58,24 @@ class Home extends Component {
       </li>
     )
 
-    return <div>
-      <h4>Home</h4>
-      <p>This is Home page.</p>      
-      <p>Posts</p>
-      <ul>
-        {posts}
-      </ul>
-    </div>
+    const Content = () => {
+      return (
+        <div>
+          <h4>Home</h4>
+          <p>This is Home page.</p>      
+          <p>Posts</p>
+          <ul>
+            {posts}
+          </ul>
+        </div>
+      )  
+    }
+
+    return (
+      <Layout Content = {Content}>
+
+      </Layout>
+    )
   }
 }
 

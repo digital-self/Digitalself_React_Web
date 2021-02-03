@@ -1,5 +1,6 @@
 import React from 'react';
 import { deletePost, getMyposts } from '../api_calls/ApiCalls';
+import Layout from './layouts/Layout';
 
 class Profile extends React.Component {
     constructor(props) {
@@ -45,14 +46,23 @@ class Profile extends React.Component {
         </li>
         )
 
+        const Profile = () => {
+            return(
+                <div>
+                    My Profile
+                    <p>Saved Posts</p>
+                    <ul>
+                        {savedPosts}
+                    </ul>
+                </div>
+            )
+            
+        }
+            
         return (
-            <div>
-                My Profile
-                <p>Saved Posts</p>
-                <ul>
-                    {savedPosts}
-                </ul>
-            </div>
+            <Layout Content = {Profile}>
+            
+            </Layout>
         )
     }
 }
