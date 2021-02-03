@@ -45,8 +45,6 @@ function authResponseHandler(result, action) {
         if (action === 'login') {
             Cookies.set("token", result.data.access_token);
             Cookies.set("userid", result.data.user.id);
-            localStorage.setItem('token', result.data.access_token);
-            localStorage.setItem('userId', result.data.user.id);
         }
         return true;
     }
