@@ -1,6 +1,5 @@
 import React from 'react';
 import { login } from '../../api_calls/ApiCalls';
-import { Redirect } from 'react-router-dom';
 import Layout from '../layouts/Layout';
 
 class Login extends React.Component {
@@ -14,14 +13,25 @@ class Login extends React.Component {
 
     submitHandler = (e) => {
         e.preventDefault();
-        login(this.state).then((a) => {
+
+        const data = {
+            email: this.email,
+            password: this.password
+        }
+        
+        login(data).then((a) => {
+            
+            console.log(a);
             if (a === 'error') {
                 window.location =  '/login';
             } else if (a === false) {
                 window.location =  '/login';
-            } else {
+            } else if (a === true) {
                 window.location =  '/';
+            } else {
+                console.log('an error occured');
             }
+            
         });
     }
 
@@ -33,25 +43,17 @@ class Login extends React.Component {
     }
 
     render() {
-        if (this.state.returnvalue === false) {
-            return <Redirect to='/login' />
-        } else if (this.state.returnvalue === true) {
-            return <Redirect to='/home' />
-        } else if (this.state.returnvalue === 'error') {
-            return <Redirect to='/login' />
-        }
-
         const Login = () => {
             return (
                 <div>
                     <form onSubmit={this.submitHandler}>
                         <div>
                             <label htmlFor="email">Email: </label>
-                            <input type="email" name="email" id="email" onChange={this.changehandler} />
+                            <input type="email" name="email" id="email" onChange = {e => this.email = e.target.value}/>
                         </div>
                         <div>
                             <label htmlFor="password">Password: </label>
-                            <input type="password" name="password" id="password" onChange={this.changehandler} />
+                            <input type="password" name="password" id="password" onChange = {e => this.password = e.target.value}/>
                         </div>
                         <div>
                             <input type="submit" name="submit" value="Submit" />
