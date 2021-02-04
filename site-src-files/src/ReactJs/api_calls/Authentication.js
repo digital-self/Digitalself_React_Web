@@ -1,6 +1,6 @@
 import configData from '../config/config.json';
 import Cookies from 'js-cookie';
-import { ajaxApiCall } from '../api_calls/ApiCalls'
+import { ajaxApiCall } from './ApiCalls'
 
 //Function to handle login and signup responses
 function authResponseHandler(result, action) {

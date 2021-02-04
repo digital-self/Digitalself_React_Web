@@ -1,5 +1,5 @@
 import React from 'react';
-import { deletePost, getMyposts } from '../api_calls/ApiCalls';
+import { deletePost, getMyposts } from '../api_calls/Posts';
 import Layout from './layouts/Layout';
 
 class Profile extends React.Component {

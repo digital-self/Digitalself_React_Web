@@ -1,5 +1,5 @@
 import React from 'react';
-import { register } from '../../api_calls/authentication';
+import { register } from '../../api_calls/Authentication';
 import Layout from '../layouts/Layout';
 
 class Register extends React.Component {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { login } from '../../api_calls/authentication';
+import { login } from '../../api_calls/Authentication';
 import Layout from '../layouts/Layout';
 
 class Login extends React.Component {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { getPosts } from '../api_calls/ApiCalls';
-import { addMyPosts } from '../api_calls/ApiCalls';
+import { getPosts,addMyPosts } from '../api_calls/Posts';
 import Layout from './layouts/Layout';
 import Cookies from 'js-cookie'
 
