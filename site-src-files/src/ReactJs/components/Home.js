@@ -19,9 +19,9 @@ class Home extends Component {
 
   componentDidMount() {
     if(localStorage.token) {
-      this.setState({token: localStorage.token});
-      this.setState({userId: localStorage.userId});
-      getPosts(localStorage.token)
+      this.setState({token: Cookies.get('token')});
+      this.setState({userId: Cookies.get('userid')});
+      getPosts(Cookies.get('token'))
       .then((a) => {
         this.setState({posts: a})
       });

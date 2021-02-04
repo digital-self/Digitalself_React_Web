@@ -1,6 +1,7 @@
 import React from 'react';
 import { deletePost, getMyposts } from '../api_calls/Posts';
 import Layout from './layouts/Layout';
+import Cookies from 'js-cookie';
 
 class Profile extends React.Component {
     constructor(props) {
@@ -11,7 +12,7 @@ class Profile extends React.Component {
     }
 
     clientGetPosts() {
-        getMyposts(localStorage.userId, localStorage.token)
+        getMyposts(Cookies.get('userid'), Cookies.get('token'))
         .then((a) => {
             this.setState({savedPosts: a})
         });
@@ -22,7 +23,7 @@ class Profile extends React.Component {
     }
 
     delete = (id) => {
-        deletePost(localStorage.userId, localStorage.token, id)
+        deletePost(Cookies.get('userid'), Cookies.get('token'), id)
         .then((a) => {
             // @Todo - display message to user after succesful delete
             this.clientGetPosts();
@@ -47,17 +48,17 @@ class Profile extends React.Component {
         )
 
         const Profile = () => {
-            return(
-                <div>
-                    <h3>My Profile</h3>
-                    <p><a href="/addpost">Create Post</a></p>
-                    <p>Saved Posts</p>
-                    <ul>
-                        {savedPosts}
-                    </ul>
-                </div>
-            )
-            
+             
+                return(
+                    <div>
+                        <h3>My Profile</h3>
+                        <p><a href="/addpost">Create Post</a></p>
+                        <p>Saved Posts</p>
+                        <ul>
+                            {savedPosts}
+                        </ul>
+                    </div>
+                )
         }
             
         return (
