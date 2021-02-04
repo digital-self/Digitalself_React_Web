@@ -4,6 +4,17 @@ import Layout from '../../layouts/Layout'
 
 class AddPost extends React.Component {
 
+    checkIsLive = (component) => {
+        let returnVal;
+        if(!component.checked) {
+            returnVal = 0;
+        } else {
+            returnVal = 1;
+        }
+
+        return returnVal;
+    }
+
     savePost = (e) => {
         e.preventDefault();
 
@@ -13,7 +24,7 @@ class AddPost extends React.Component {
             post_thumbnail_url: this.post_thumbnail_url,
             post_content: this.post_content,
             description: 'this is a description',
-            isLive: this.isLive,
+            isLive: this.checkIsLive(document.getElementById('isLive')),
             post_slug: this.post_slug,
             noPersonWatching: 1
         }
@@ -47,7 +58,7 @@ class AddPost extends React.Component {
                         </div>
                         <div>
                             <label htmlFor = "islive">Is Live: </label>
-                            <input type="radio" name="isLive" value="1" onChange = {e => this.isLive = e.target.value} />
+                            <input type="radio" id="isLive" name="isLive" value="1" onChange = {e => this.isLive = e.target.value} />
                         </div>
                         <div>
                             <label htmlFor = "postslug">Post Slug: </label>

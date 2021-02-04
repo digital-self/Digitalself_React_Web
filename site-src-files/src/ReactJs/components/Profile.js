@@ -49,7 +49,8 @@ class Profile extends React.Component {
         const Profile = () => {
             return(
                 <div>
-                    My Profile
+                    <h3>My Profile</h3>
+                    <p><a href="/addpost">Create Post</a></p>
                     <p>Saved Posts</p>
                     <ul>
                         {savedPosts}
