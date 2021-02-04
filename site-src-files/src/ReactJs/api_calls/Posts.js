@@ -38,6 +38,7 @@ export function getMyposts(userId, token) {
         const ajaxApiCallObject = new ajaxApiCall();
         returnVal = ajaxApiCallObject.makeApiCall("GET", configData.base_url + `/my-posts/${userId}/0/6`, headers)
         .then(response => {
+           /*
             let responseArray = response.data.data.my_posts;
             let finalArray = [];
             for(let i = 0; i < responseArray.length; i++) {
@@ -45,6 +46,10 @@ export function getMyposts(userId, token) {
             }
 
             return finalArray;
+            */
+           return response.data.data.my_posts
+           
+           
         })
         .catch(error => {
             return 'error';
