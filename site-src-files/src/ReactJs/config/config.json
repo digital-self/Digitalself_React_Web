@@ -1,5 +1,5 @@
 {
-    "base_url": "https://web-app-api-ci.digital-self.com/index.php/api",
+    "base_url": "https://web-app-api-ci.digital-self.com/api",
     "headers": {
         "Accept": "application/json",
         "Content-Type": "application/json"

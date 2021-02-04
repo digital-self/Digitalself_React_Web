@@ -110,3 +110,17 @@ export function getPosts(token) {
     
     return returnVal;
 }
+
+//Add Post
+export function addPost(data) {
+    const ajaxApiCallObject = new ajaxApiCall();
+    let returnVal = ajaxApiCallObject.makeApiCall("POST", configData.base_url + '/post', data)
+    .then(response => {
+        console.log(response);
+    })
+    .catch(error => {
+        console.log(error);
+    })
+
+    return returnVal;
+}
