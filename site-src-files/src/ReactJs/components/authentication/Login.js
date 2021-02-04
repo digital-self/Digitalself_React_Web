@@ -20,18 +20,13 @@ class Login extends React.Component {
         }
         
         login(data).then((a) => {
-            
-            console.log(a);
             if (a === 'error') {
                 window.location =  '/login';
             } else if (a === false) {
                 window.location =  '/login';
             } else if (a === true) {
                 window.location =  '/';
-            } else {
-                console.log('an error occured');
             }
-            
         });
     }
 
