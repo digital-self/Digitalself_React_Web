@@ -1,5 +1,5 @@
 import React from 'react';
-import { login } from '../../api_calls/ApiCalls';
+import { login } from '../../api_calls/authentication';
 import Layout from '../layouts/Layout';
 
 class Login extends React.Component {
@@ -33,13 +33,6 @@ class Login extends React.Component {
             }
             
         });
-    }
-
-    changehandler = (e) => {
-        const nam = e.target.name;
-        const val = e.target.value;
-
-        this.setState({[nam]: val});
     }
 
     render() {
