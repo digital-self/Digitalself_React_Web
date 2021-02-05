@@ -18,7 +18,7 @@ class Home extends Component {
   //@todo - handle log out
 
   componentDidMount() {
-    if(localStorage.token) {
+    if(Cookies.get('token')) {
       this.setState({token: Cookies.get('token')});
       this.setState({userId: Cookies.get('userid')});
       getPosts(Cookies.get('token'))

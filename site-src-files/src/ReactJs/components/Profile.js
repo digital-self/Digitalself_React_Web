@@ -11,6 +11,10 @@ class Profile extends React.Component {
         }
     }
 
+    editPost = () => {
+        window.location = '/editpost';
+    }
+
     clientGetPosts() {
         getMyposts(Cookies.get('userid'), Cookies.get('token'))
         .then((a) => {
@@ -42,6 +46,9 @@ class Profile extends React.Component {
             <div>
             <h3>{savedPost.post_title}</h3>
             <p>{savedPost.post_content}</p>
+            <div>
+                <button onClick = {this.editPost}>Edit post</button>
+            </div>
             <button onClick={this.delete.bind(this, savedPost.id)}>Delete Post</button>
             </div>
         </li>
