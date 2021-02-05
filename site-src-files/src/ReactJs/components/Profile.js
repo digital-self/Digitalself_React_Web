@@ -1,7 +1,6 @@
 import React from 'react';
 import { deleteSavedPost, getMyposts } from '../api_calls/Posts';
 import Layout from './layouts/Layout';
-import Cookies from 'js-cookie';
 import { getToken, getUserId } from '../app_functions/GetCookies';
 
 class Profile extends React.Component {
