@@ -4,8 +4,8 @@ import axios from 'axios';
 export const ajaxApiCall = function(){
 
         
-    this.apiPost = (url, data) => {
-        return axios.post(url, data);
+    this.apiPost = (url, data = null, headers = null) => {
+        return axios.post(url, data, headers);
     };
 
     this.apiGet = (url, data) => {
@@ -16,12 +16,12 @@ export const ajaxApiCall = function(){
         return axios.delete(url, data);
     };
 
-    this.makeApiCall = (type, url, data) => {
+    this.makeApiCall = (type, url, data = null, headers = null) => {
         
         let client = null;
         switch(type){
             case "POST":
-                client = this.apiPost(url, data);
+                client = this.apiPost(url, data, headers);
             break;
             case "DELETE":
                 client = this.apiDelete(url, data);

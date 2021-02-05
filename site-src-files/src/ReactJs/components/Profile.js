@@ -1,5 +1,5 @@
 import React from 'react';
-import { deletePost, getMyposts } from '../api_calls/Posts';
+import { deleteSavedPost, getMyposts } from '../api_calls/Posts';
 import Layout from './layouts/Layout';
 import Cookies from 'js-cookie';
 
@@ -27,7 +27,7 @@ class Profile extends React.Component {
     }
 
     delete = (id) => {
-        deletePost(Cookies.get('userid'), Cookies.get('token'), id)
+        deleteSavedPost(Cookies.get('userid'), Cookies.get('token'), id)
         .then((a) => {
             // @Todo - display message to user after succesful delete
             this.clientGetPosts();
