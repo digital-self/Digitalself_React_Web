@@ -72,14 +72,14 @@ export function deletePost(userId, token, postId) {
 
         returnVal  = ajaxApiCallObject.makeApiCall("DELETE", configData.base_url + `/my-posts/${userId}/${postId}`, headers)
         .then(response => {
-            console.log(response);
-            /*
+            
+            
             if(!response.data.success) {
                 return false;
             } else {
                 return response.data.success;
             }
-            */
+            
             
         })
         .catch(error => {
@@ -92,26 +92,25 @@ export function deletePost(userId, token, postId) {
 
 //Get all  posts
 export function getPosts(token) {
-    let headers = configData.headers;
-    let returnVal;
 
-    if (token) {
-        headers.Authorization = `Basic ${token}`;
+        let returnVal;
+        let data = configData.headersContent;
+        data.headers.Authorization = `Bearer ${token}`;
 
         const ajaxApiCallObject = new ajaxApiCall();
 
-        returnVal  = ajaxApiCallObject.makeApiCall("GET", configData.base_url + '/post', headers)
+        returnVal  = ajaxApiCallObject.makeApiCall("GET", configData.base_url + '/post', data)
         .then(response => {
             if(!response.data.data.posts.data) {
                 return false;
             } else {
                 return response.data.data.posts.data;
             }
+            
         })
         .catch(error => {
-            return 'error';
+            return 'error';            
         });
-    }
     
     return returnVal;
 }

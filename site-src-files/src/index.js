@@ -7,6 +7,7 @@ import Login from './ReactJs/components/authentication/Login.js';
 import Register from './ReactJs/components/authentication/Register';
 import Profile from './ReactJs/components/Profile';
 import AddPost from './ReactJs/components/admin/posts/AddPost';
+import EditPost from './ReactJs/components/admin/posts/EditPost';
 
 const routing = (
   <BrowserRouter>
@@ -16,6 +17,7 @@ const routing = (
         <Route path="/register" component={Register} />
         <Route path="/profile" component={Profile} />
         <Route path="/addPost" component={AddPost} />
+        <Route path="/editpost" component={EditPost} />
       </Switch>
   </BrowserRouter>
 )
