@@ -29,27 +29,17 @@ export function addMyPosts(userId, postId, token) {
 
 //Get a user's saved posts
 export function getMyposts(userId, token) {
-    let headers = configData.headers;
     let returnVal;
 
-    if (token) {
-        headers.Authorization = `Basic ${token}`;    
+    let data = configData.headersContent;
+    if(token) {
+        data.headers.Authorization = `Bearer ${token}`;
 
         const ajaxApiCallObject = new ajaxApiCall();
-        returnVal = ajaxApiCallObject.makeApiCall("GET", configData.base_url + `/my-posts/${userId}/0/6`, headers)
+        returnVal = ajaxApiCallObject.makeApiCall("GET", configData.base_url + `/my-posts/${userId}/0/6`, data)
         .then(response => {
-           /*
-            let responseArray = response.data.data.my_posts;
-            let finalArray = [];
-            for(let i = 0; i < responseArray.length; i++) {
-                finalArray.push(responseArray[i][0]);
-            }
 
-            return finalArray;
-            */
            return response.data.data.my_posts
-           
-           
         })
         .catch(error => {
             return 'error';
@@ -93,8 +83,9 @@ export function deletePost(userId, token, postId) {
 //Get all  posts
 export function getPosts(token) {
 
-        let returnVal;
-        let data = configData.headersContent;
+    let returnVal;
+    let data = configData.headersContent;
+    if(token) {
         data.headers.Authorization = `Bearer ${token}`;
 
         const ajaxApiCallObject = new ajaxApiCall();
@@ -111,6 +102,7 @@ export function getPosts(token) {
         .catch(error => {
             return 'error';            
         });
+    }
     
     return returnVal;
 }
