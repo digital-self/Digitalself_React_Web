@@ -4,6 +4,7 @@ import { ajaxApiCall } from './ApiCalls';
 //Save a post to a user's profile
 export function addMyPosts(userId, postId, token) {
     let returnVal;
+    let payload = null;
     let data = configData.headersContent;
 
     if(token) {
@@ -11,7 +12,7 @@ export function addMyPosts(userId, postId, token) {
 
         const ajaxApiCallObject = new ajaxApiCall();
 
-        returnVal  = ajaxApiCallObject.makeApiCall("POST", configData.base_url + `/my-posts/add/${userId}/${postId}`, data)
+        returnVal  = ajaxApiCallObject.makeApiCall("POST", configData.base_url + `/my-posts/add/${userId}/${postId}`, payload, data)
         .then(response => {
             if(!response.data.success) {
                 return false;
@@ -21,7 +22,6 @@ export function addMyPosts(userId, postId, token) {
             
         })
         .catch(error => {
-            console.log(data.headers.Authorization);
             return 'error';
         });
     }
@@ -52,7 +52,7 @@ export function getMyposts(userId, token) {
 }
 
 //delete a post a user saved
-export function deleteMyPost(userId, token, postId) {
+export function deleteSavedPost(userId, token, postId) {
     let returnVal;
 
     let data = configData.headersContent;
