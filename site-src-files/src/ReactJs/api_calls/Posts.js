@@ -109,15 +109,20 @@ export function getPosts(token) {
 }
 
 //Add Post
-export function addPost(data) {
-    const ajaxApiCallObject = new ajaxApiCall();
-    let returnVal = ajaxApiCallObject.makeApiCall("POST", configData.base_url + '/post', data)
-    .then(response => {
-        console.log(response);
-    })
-    .catch(error => {
-        console.log(error);
-    })
+export function addPost(payload, token) {
+    let returnVal;
+    let data = configData.headersContent;
+    if(token) {
+        data.headers.Authorization = `Bearer ${token}`;
+        const ajaxApiCallObject = new ajaxApiCall();
+        let returnVal = ajaxApiCallObject.makeApiCall("POST", configData.base_url + '/post', payload, data)
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
 
     return returnVal;
 }
