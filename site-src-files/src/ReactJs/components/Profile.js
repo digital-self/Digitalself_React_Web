@@ -2,12 +2,15 @@ import React from 'react';
 import { deleteSavedPost, getMyposts } from '../api_calls/Posts';
 import Layout from './layouts/Layout';
 import Cookies from 'js-cookie';
+import { getToken, getUserId } from '../app_functions/GetCookies';
 
 class Profile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            savedPosts: []
+            savedPosts: [],
+            userId: [],
+            token: []
         }
     }
 
@@ -16,7 +19,7 @@ class Profile extends React.Component {
     }
 
     clientGetPosts() {
-        getMyposts(Cookies.get('userid'), Cookies.get('token'))
+        getMyposts(getUserId(), getToken())
         .then((a) => {
             this.setState({savedPosts: a})
         });
@@ -24,10 +27,12 @@ class Profile extends React.Component {
 
     componentDidMount() {
         this.clientGetPosts();
+        this.setState({userId: getUserId()});
+        this.setState({token: getToken()});
     }
 
     delete = (id) => {
-        deleteSavedPost(Cookies.get('userid'), Cookies.get('token'), id)
+        deleteSavedPost(this.state.userId, this.state.token, id)
         .then((a) => {
             // @Todo - display message to user after succesful delete
             this.clientGetPosts();

@@ -1,7 +1,7 @@
 import React from 'react';
 import { addPost } from '../../../api_calls/Posts';
 import Layout from '../../layouts/Layout';
-import Cookies from 'js-cookie';
+import { getToken } from '../../../app_functions/GetCookies';
 
 class AddPost extends React.Component {
 
@@ -30,7 +30,7 @@ class AddPost extends React.Component {
             noPersonWatching: 1
         }
 
-        addPost(data, Cookies.get('token'));
+        addPost(data, getToken());
         console.log(data);
 
 

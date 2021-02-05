@@ -115,7 +115,7 @@ export function addPost(payload, token) {
     if(token) {
         data.headers.Authorization = `Bearer ${token}`;
         const ajaxApiCallObject = new ajaxApiCall();
-        let returnVal = ajaxApiCallObject.makeApiCall("POST", configData.base_url + '/post', payload, data)
+        returnVal = ajaxApiCallObject.makeApiCall("POST", configData.base_url + '/post', payload, data)
         .then(response => {
             console.log(response);
         })

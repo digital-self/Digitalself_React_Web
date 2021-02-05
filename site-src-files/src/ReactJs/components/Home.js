@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { getPosts,addMyPosts } from '../api_calls/Posts';
 import Layout from './layouts/Layout';
-import Cookies from 'js-cookie'
+import { getToken, getUserId } from '../app_functions/GetCookies';
 
 class Home extends Component {
   constructor(props) {
@@ -18,10 +18,10 @@ class Home extends Component {
   //@todo - handle log out
 
   componentDidMount() {
-    if(Cookies.get('token')) {
-      this.setState({token: Cookies.get('token')});
-      this.setState({userId: Cookies.get('userid')});
-      getPosts(Cookies.get('token'))
+    if(getToken()) {
+      this.setState({token: getToken()});
+      this.setState({userId: getUserId()});
+      getPosts(getToken())
       .then((a) => {
         this.setState({posts: a})
       });
@@ -37,7 +37,7 @@ class Home extends Component {
   }
 
   render() {
-    if (!(Cookies.get("token") && Cookies.get("userid"))) {
+    if (!(getToken() && getUserId())) {
       return (<Redirect to='/login' />);
     }
 
