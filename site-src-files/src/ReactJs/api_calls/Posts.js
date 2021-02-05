@@ -3,15 +3,15 @@ import { ajaxApiCall } from './ApiCalls';
 
 //Save a post to a user's profile
 export function addMyPosts(userId, postId, token) {
-    let headers = configData.headers;
     let returnVal;
+    let data = configData.headersContent;
 
-    if (token) {
-        headers.Authorization = `Basic ${token}`;
+    if(token) {
+        data.headers.Authorization = `Bearer ${token}`;
 
         const ajaxApiCallObject = new ajaxApiCall();
 
-        returnVal  = ajaxApiCallObject.makeApiCall("POST", configData.base_url + `/my-posts/add/${userId}/${postId}`, headers)
+        returnVal  = ajaxApiCallObject.makeApiCall("POST", configData.base_url + `/my-posts/add/${userId}/${postId}`, data)
         .then(response => {
             if(!response.data.success) {
                 return false;
@@ -21,6 +21,7 @@ export function addMyPosts(userId, postId, token) {
             
         })
         .catch(error => {
+            console.log(data.headers.Authorization);
             return 'error';
         });
     }
@@ -51,16 +52,16 @@ export function getMyposts(userId, token) {
 }
 
 //delete a post a user saved
-export function deletePost(userId, token, postId) {
-    let headers = configData.headers;
+export function deleteMyPost(userId, token, postId) {
     let returnVal;
 
-    if (token) {
-        headers.Authorization = `Basic ${token}`;
+    let data = configData.headersContent;
+    if(token) {
+        data.headers.Authorization = `Bearer ${token}`;
 
         const ajaxApiCallObject = new ajaxApiCall();
 
-        returnVal  = ajaxApiCallObject.makeApiCall("DELETE", configData.base_url + `/my-posts/${userId}/${postId}`, headers)
+        returnVal  = ajaxApiCallObject.makeApiCall("DELETE", configData.base_url + `/my-posts/${userId}/${postId}`, data)
         .then(response => {
             
             
