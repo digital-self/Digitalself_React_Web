@@ -44,9 +44,10 @@ class Profile extends React.Component {
         } else if (this.state.savedPosts === 'error') {
             return <p>An error occured</p>
         }
-      
+
         const savedPosts =  this.state.savedPosts.map((savedPost) =>
-        <li key={savedPost.id}>
+        <li key={savedPost.id+Math.random()}>
+            {/* @todo - remove this math random when duplicated my posts are fixed on the server. */}
             <div>
             <h3>{savedPost.post_title}</h3>
             <p>{savedPost.post_content}</p>
@@ -59,7 +60,7 @@ class Profile extends React.Component {
         )
 
         const Profile = () => {
-             
+
                 return(
                     <div>
                         <h3>My Profile</h3>
@@ -71,10 +72,10 @@ class Profile extends React.Component {
                     </div>
                 )
         }
-            
+
         return (
             <Layout Content = {Profile}>
-            
+
             </Layout>
         )
     }
