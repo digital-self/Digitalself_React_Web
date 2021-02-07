@@ -1,14 +1,15 @@
-import configData from '../config/config.json';
 import {ajaxApiCall} from './ApiCalls';
+import { loggger } from '../app_functions/Loggger';
 
 //Save a post to a user's profile
-export function addMyPosts(userId, postId, token) {
+export function addMyPosts(userId, postId) {
     let returnVal;
     let payload = null;
 
     const ajaxApiCallObject = new ajaxApiCall();
 
-    returnVal = ajaxApiCallObject.makeApiCall("POST", configData.base_url + `/my-posts/add/${userId}/${postId}`, payload, {})
+    returnVal = ajaxApiCallObject.makeApiCall(
+        "POST", `/my-posts/add/${userId}/${postId}`, payload)
         .then(response => {
             if (!response.data.success) {
                 return false;
@@ -24,29 +25,28 @@ export function addMyPosts(userId, postId, token) {
 }
 
 //Get a user's saved posts
-export function getMyposts(userId, token) {
+export function getMyposts(userId) {
     let returnVal;
-
     const ajaxApiCallObject = new ajaxApiCall();
-    returnVal = ajaxApiCallObject.makeApiCall("GET", configData.base_url + `/my-posts/${userId}/0/6`, {})
+    returnVal = ajaxApiCallObject.makeApiCall("GET", `/my-posts/${userId}/0/6`, {})
         .then(response => {
-
             return response.data.data.my_posts
         })
         .catch(error => {
+            loggger("");
+            console.log('error', 'error');
             return 'error';
         });
-
-
     return returnVal;
 }
 
 //delete a post a user saved
-export function deleteSavedPost(userId, token, postId) {
+export function deleteSavedPost(userId, postId) {
     let returnVal;
     const ajaxApiCallObject = new ajaxApiCall();
 
-    returnVal = ajaxApiCallObject.makeApiCall("DELETE", configData.base_url + `/my-posts/${userId}/${postId}`, {})
+    returnVal = ajaxApiCallObject.makeApiCall(
+        "DELETE", `/my-posts/${userId}/${postId}`, {})
         .then(response => {
 
 
@@ -66,13 +66,13 @@ export function deleteSavedPost(userId, token, postId) {
 }
 
 //Get all  posts
-export function getPosts(token) {
+export function getPosts() {
 
     let returnVal;
 
     const ajaxApiCallObject = new ajaxApiCall();
 
-    returnVal = ajaxApiCallObject.makeApiCall("GET", configData.base_url + '/post', {})
+    returnVal = ajaxApiCallObject.makeApiCall("GET", '/post', {})
         .then(response => {
             if (!response.data.data.posts.data) {
                 return false;
@@ -92,7 +92,7 @@ export function getPosts(token) {
 export function addPost(payload, token) {
     let returnVal;
     const ajaxApiCallObject = new ajaxApiCall();
-    returnVal = ajaxApiCallObject.makeApiCall("POST", configData.base_url + '/post', payload, {})
+    returnVal = ajaxApiCallObject.makeApiCall("POST", '/post', payload)
         .then(response => {
             console.log(response);
         })

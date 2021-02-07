@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
 
 export function getUserId() {
-    return Cookies.get('userid') || null;
+    return Cookies.get('userid') || [];
 }
 
 export function getToken() {

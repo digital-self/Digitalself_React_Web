@@ -1,4 +1,3 @@
-import configData from '../config/config.json';
 import Cookies from 'js-cookie';
 import {ajaxApiCall} from './ApiCalls';
 
@@ -26,7 +25,7 @@ function authResponseHandler(result, action) {
 export function login(userInput) {
     const ajaxApiCallObject = new ajaxApiCall();
     let returnVal = ajaxApiCallObject.makeApiCall(
-        "POST", configData.base_url + '/user/login', userInput)
+        "POST", '/user/login', userInput)
         .then(response => {
             if (!response.data.success) {
                 return response.data.success;
@@ -51,7 +50,7 @@ export function login(userInput) {
  */
 export function register(userInput) {
     const ajaxApiCallObject = new ajaxApiCall();
-    let returnVal = ajaxApiCallObject.makeApiCall("POST", configData.base_url + '/user/register', userInput)
+    let returnVal = ajaxApiCallObject.makeApiCall("POST", '/user/register', userInput)
         .then(response => {
             if (!response.data.success) {
                 return response.data.success;

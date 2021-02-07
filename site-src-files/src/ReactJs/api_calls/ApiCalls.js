@@ -22,8 +22,8 @@ export const ajaxApiCall = function () {
      * @param data
      * @returns {Promise<AxiosResponse<any>>}
      */
-    this.apiGet = (url, data) => {
-        return axios.get(url, data);
+    this.apiGet = (url, data, headers) => {
+        return axios.get(url, data, headers);
     };
 
     /**
@@ -31,8 +31,8 @@ export const ajaxApiCall = function () {
      * @param data
      * @returns {Promise<AxiosResponse<any>>}
      */
-    this.apiDelete = (url, data) => {
-        return axios.delete(url, data);
+    this.apiDelete = (url, data, headers) => {
+        return axios.delete(url, data, headers);
     };
 
     /**
@@ -42,18 +42,19 @@ export const ajaxApiCall = function () {
      * @param headers
      * @returns {Promise<AxiosResponse<*>>}
      */
-    this.makeApiCall = (type, url, data = null, headers = null) => {
+    this.makeApiCall = (type, url, data = null) => {
+        url = configData.base_url + url;
         let client = null;
-        data = this.applyHeaderContent(data);
+        const headers = this.applyHeaderContent(data);
         switch (type) {
             case "POST":
                 client = this.apiPost(url, data, headers);
                 break;
             case "DELETE":
-                client = this.apiDelete(url, data);
+                client = this.apiDelete(url, data, headers);
                 break;
             default:
-                client = this.apiGet(url, data);
+                client = this.apiGet(url, data, headers);
         }
         return client;
     };

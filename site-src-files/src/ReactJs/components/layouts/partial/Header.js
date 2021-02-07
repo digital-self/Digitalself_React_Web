@@ -1,5 +1,5 @@
 import React from 'react';
-import { checkAuth } from '../../../app_functions/CheckAuth';
+import { Auth } from '../../../app_functions/Auth';
 import LinksContainer from '../partial/LinksContainer';
 import AuthenticatedComponents from './AuthenticatedComponents';
 import AuthComponents from './UnauthenticatedComponents';
@@ -7,9 +7,7 @@ import AuthComponents from './UnauthenticatedComponents';
 class Header extends React.Component {
     render() {
         let Contents;
-        
-        
-        if(!checkAuth()) {
+        if(!Auth().isLoggedIn()) {
             Contents = () => {
                 return (
                     <div>
@@ -26,7 +24,7 @@ class Header extends React.Component {
                 )
             }
         }
-        
+
         return (
             <div>
                 <h1>Header</h1>
