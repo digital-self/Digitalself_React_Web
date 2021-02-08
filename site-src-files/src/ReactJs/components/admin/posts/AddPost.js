@@ -5,7 +5,7 @@ import { getToken } from '../../../app_functions/GetCookies';
 
 class AddPost extends React.Component {
 
-    checkIsLive = (component) => {
+    checkClicked = (component) => {
         let returnVal;
         if(!component.checked) {
             returnVal = 0;
@@ -16,7 +16,32 @@ class AddPost extends React.Component {
         return returnVal;
     }
 
+    getElement = (id) => {
+        return document.getElementById(id);
+    }
+
+    
+
+    checkCategories = () => {
+        let total = [];
+        let music, sport, artsculture, entertainment;
+        let elements = [music, sport, artsculture, entertainment];
+        let elementNames = ['music', 'sport', 'artsculture', 'entertainment'];
+        for (let i = 0; i < 4; i++) {
+            elements[i] = this.getElement(elementNames[i]);
+        }
+        
+        for(let i = 0; i < 4; i++) {
+            if(elements[i].checked) {
+                total.push(parseInt(elements[i].value))
+            }    
+        }
+        
+        return total;
+    }
+
     savePost = (e) => {
+        
         e.preventDefault();
 
         const data = {
@@ -25,15 +50,14 @@ class AddPost extends React.Component {
             post_thumbnail_url: this.post_thumbnail_url,
             post_content: this.post_content,
             description: 'this is a description',
-            isLive: this.checkIsLive(document.getElementById('isLive')),
+            isLive: this.checkClicked(this.getElement('isLive')),
             post_slug: this.post_slug,
-            noPersonWatching: 1
+            noPersonWatching: 1,
+            categories: this.checkCategories()
         }
-
+        
         addPost(data, getToken());
         console.log(data);
-
-
     }
 
     render() {
@@ -64,6 +88,17 @@ class AddPost extends React.Component {
                         <div>
                             <label htmlFor = "postslug">Post Slug: </label>
                             <input type="text" name="post_slug" onChange = {e => this.post_slug = e.target.value} />
+                        </div>
+                        <div>
+                            <label>Categories: </label>
+                            <label htmlFor = "music">Music: </label>
+                            <input type="radio" id="music" name="music" value="1" />
+                            <label htmlFor = "sport">Sport: </label>
+                            <input type="radio" id="sport" name="sport" value="2" />
+                            <label htmlFor = "artsculture">Arts and Culture: </label>
+                            <input type="radio" id="artsculture" name="artsculture" value="3" />
+                            <label htmlFor = "entertainment">Entertainment: </label>
+                            <input type="radio" id="entertainment" name="entertainment" value="4" />
                         </div>
                         <button>Save</button>
                     </form>

@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from '../../layouts/Layout';
-import Content from './EditUser'
+import Content from './AddEdit';
+import addUser from '../../../api_calls/Users'
 
 class AddUser extends React.Component {
     

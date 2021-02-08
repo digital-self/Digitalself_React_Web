@@ -72,6 +72,9 @@ class Profile extends React.Component {
                 <div>
                     <h3>My Profile</h3>
                     <p><a href="/addpost">Create Post</a></p>
+
+                    <p><a href="/adduser">Add User</a></p>
+
                     <p>Saved Posts</p>
                     <ul>
                         {savedPosts}
