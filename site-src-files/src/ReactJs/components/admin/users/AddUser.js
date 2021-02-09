@@ -16,7 +16,7 @@ class AddUser extends React.Component {
             image: this.image
         }
 
-        addUser(data, getToken());
+        addUser(data);
     }
     
     render() {

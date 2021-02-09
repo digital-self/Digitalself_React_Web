@@ -1,17 +1,8 @@
-const Content = () => {
-    const data = {
-        first_name: this.first_name,
-        last_name: this.last_name,
-        type: this.type,
-        email: this.email,
-        mobile_phone: this.mobile_phone,
-        image: this.image
-    }
+const AddEdit = ({formSubmitted}) => {
 
-    
     return (
         <div>
-            <form onSubmit={this.addUser}>
+            <form onSubmit = {formSubmitted}>
                 <div>
                     <label htmlFor="fname">First Name: </label>
                     <input id="fname" type="text" name="first_name" onChange = {e => this.first_name = e.target.value} />
@@ -44,4 +35,4 @@ const Content = () => {
     )
 }
 
-export default Content;
+export default AddEdit;

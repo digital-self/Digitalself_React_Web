@@ -1,6 +1,7 @@
 import {ajaxApiCall} from './ApiCalls';
 
-export function addUser(payload, token) {
+//Add user
+export function addUser(payload) {
     let returnVal;
     const ajaxApiCallObject = new ajaxApiCall();
     returnVal = ajaxApiCallObject.makeApiCall("POST", '/user/add', payload)
