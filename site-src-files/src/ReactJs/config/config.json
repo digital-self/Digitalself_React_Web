@@ -1,5 +1,5 @@
 {
-    "base_url": "digital-self-web-app:5127/api",
+    "base_url": "https://web-app-api-ci.digital-self.com/api",
     "base_local_url": "http://localhost:5127/api/",
     "headersContent": {
         "headers": {

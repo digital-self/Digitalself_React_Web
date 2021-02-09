@@ -36,8 +36,7 @@ class AddPost extends React.Component {
                 total.push(parseInt(elements[i].value))
             }    
         }
-        
-        return total;
+        return total.length?total.join(','):"";
     }
 
     savePost = (e) => {

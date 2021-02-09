@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
-import {getPosts, addMyPosts} from '../api_calls/Posts';
+import {getPosts, addMyPosts, postsByCategory} from '../api_calls/Posts';
 import Layout from './layouts/Layout';
 import {Auth} from '../app_functions/Auth';
 import {getUserId} from '../app_functions/GetCookies';
@@ -21,7 +21,8 @@ class Home extends Component {
             this.setState({userId: getUserId()});
             getPosts()
                 .then((returnedPosts) => {
-                    this.setState({posts: returnedPosts})
+                    this.setState({posts: returnedPosts});
+                    postsByCategory(3);
                 });
         }
     }
@@ -45,6 +46,8 @@ class Home extends Component {
             return <p>An error occured</p>
         }
 
+
+    
         const posts = this.state.posts.map((post) =>
             <li key={post.id}>
                 <div>
@@ -52,7 +55,7 @@ class Home extends Component {
                     <p>{post.post_content}</p>
                     <button onClick={this.save.bind(this, post.id)}>Save for future</button>
                 </div>
-            </li>
+            </li>            
         )
 
         const Content = () => {
@@ -61,9 +64,10 @@ class Home extends Component {
                     <h4>Home</h4>
                     <p>This is Home page.</p>
                     <p>Posts</p>
+                    <h3>Music</h3>
                     <ul>
                         {posts}
-                    </ul>
+                    </ul>        
                 </div>
             )
         }

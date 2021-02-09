@@ -73,10 +73,12 @@ export function getPosts() {
 
     returnVal = ajaxApiCallObject.makeApiCall("GET", '/post', {})
         .then(response => {
-            if (!response.data.data.posts.data) {
+            let posts = response.data.data.posts;
+            
+            if (!posts) {
                 return false;
             } else {
-                return response.data.data.posts.data;
+                return posts;
             }
 
         })
@@ -98,5 +100,19 @@ export function addPost(payload, token) {
         .catch(error => {
             console.log(error);
         });
+    return returnVal;
+}
+
+//Get posts by category
+export function postsByCategory(id) {
+    const ajaxApiCallObject = new ajaxApiCall();
+    let returnVal = ajaxApiCallObject.makeApiCall("GET", `/post/category/${id}`, {})
+    .then(response => {
+        console.log(response);
+    })
+    .catch(error => {
+        console.log(error);
+    })
+
     return returnVal;
 }
